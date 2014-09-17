@@ -7,7 +7,7 @@ Remail is a simple command that launches an SMTP server on the configured port a
 ```
 $ remail
 {"from":"ab@mydomain.com","to":["bab@mydomain.com"],"addr":"[::1]:52661","content":"From: ab@mydomain.com\r\nTo: lab@mydomain.com\r\nSubject: test message\r\nDate: Right now\r\nMessage-Id: somestring\r\n\r\n This is a test message\r\n"}
-{"from":"cd@mydomain.com","to":["dab@mydomain.com"],"addr":"[::1]:52661","content":"From: abishopric@mydomain.com\r\nTo: jab@mydomain.com\r\nSubject: test message\r\nDate: Right now\r\nMessage-Id: somestring\r\n\r\n This is a test message\r\n"}
+{"from":"cd@mydomain.com","to":["dab@mydomain.com"],"addr":"[::1]:52661","content":"From: cd@mydomain.com\r\nTo: dab@mydomain.com\r\nSubject: test message\r\nDate: Right now\r\nMessage-Id: somestring\r\n\r\n This is a test message\r\n"}
 ```
 
 The default invocation of remail simply listens on port 25 and emits a json document for each email received. To override the port, use the SMTP_PORT environment variable.
