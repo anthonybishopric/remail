@@ -14,16 +14,19 @@ Since each line is passed on standard out, client programs should be written wit
 
 ## As a Go Library
 
-```Go
+The SMTP server can be started by invoking `remail.Serve` with a callback for each email received. 
+
+```go
 package foo
 
 import "github.com/anthonybishopric/remail/pkg"
 
 func StartFakeSMTPServer() {
-    remail.Serve(func(rec ReceivedEmail, jsonContent string) {
+    remail.Serve(func(rec ReceivedEmail, jsonContent []byte) error {
         if rec.From == "someone@important.com" {
             // do something useful
         }
+        return nil
     })
 }
 
