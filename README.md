@@ -26,7 +26,7 @@ package foo
 import "github.com/anthonybishopric/remail/pkg"
 
 func StartFakeSMTPServer() {
-    remail.Serve(func(rec ReceivedEmail, jsonContent []byte) error {
+    remail.Serve(func(rec remail.ReceivedEmail, jsonContent []byte) error {
         if rec.From == "someone@important.com" {
             // do something useful
         }
