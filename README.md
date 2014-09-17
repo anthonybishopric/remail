@@ -1,6 +1,6 @@
 ## Remail, an STMP rerouter
 
-Remail is a simple command that launches an SMTP server on the configured port and executes the passed command for each email sent. The email is passed to the command on STDIN as JSON.
+Remail is a simple command that launches an SMTP server on the configured port and emits a JSON blob for each received email.
 
 ## Command-line Usage
 
