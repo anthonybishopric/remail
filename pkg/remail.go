@@ -3,18 +3,16 @@ package remail
 import (
 	"encoding/json"
 	"fmt"
-	"log"
-	"os"
 
 	"github.com/bradfitz/go-smtpd/smtpd"
 )
 
 type OnEmail func(r ReceivedEmail, jsonContent []byte) error
 
-func Serve(onEmail OnEmail) error {
+func Serve(listen string, onEmail OnEmail) error {
 
 	server := smtpd.Server{
-		Addr:      PortNumber(),
+		Addr:      listen,
 		OnNewMail: ListenWithOnEmail(onEmail),
 	}
 	return server.ListenAndServe()
@@ -25,14 +23,6 @@ type ReceivedEmail struct {
 	To      []string `json:"to"`
 	Addr    string   `json:"addr"`
 	Content string   `json:"content"`
-}
-
-func PortNumber() string {
-	port := os.Getenv("SMTP_PORT")
-	if port == "" {
-		port = ":25"
-	}
-	return port
 }
 
 type RemailEnvelope struct {
@@ -56,7 +46,6 @@ func (r *RemailEnvelope) Write(v []byte) error {
 
 func (r *RemailEnvelope) Close() error {
 	jsonContent, err := json.Marshal(r.rec)
-	log.Println(string(jsonContent))
 	if err != nil {
 		return err
 	}

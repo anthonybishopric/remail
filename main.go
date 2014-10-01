@@ -11,7 +11,13 @@ import (
 
 func main() {
 	log.SetOutput(ioutil.Discard)
-	err := remail.Serve(remail.ListenWithPrint)
+
+	listen := os.Getenv("SMTP_PORT")
+	if listen == "" {
+		listen = ":25"
+	}
+
+	err := remail.Serve(listen, remail.ListenWithPrint)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
