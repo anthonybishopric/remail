@@ -1,4 +1,4 @@
-## Remail, an STMP rerouter
+## Remail, an SMTP rerouter
 
 Remail is a simple command that launches an SMTP server on the configured port and emits a JSON blob for each received email.
 
